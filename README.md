@@ -6,12 +6,14 @@
 
 ## Building MatBuilder
 
- To build the code, you would need an install of the CPLEX Optimization Studio (free for academics,). Once CPLEX as been installed:
+ To build the code, you would need an install of the CPLEX Optimization Studio (free for academics,). Once CPLEX as been installed,
+ you first need to verify the paths to the CPLEX headers and libraries (cf [CMakeLists.txt](https://github.com/loispaulin/matbuilder/blob/6b8474f16bfc26d2c82fcaf6bf55e544db6706e1/CMakeLists.txt#L25)).
+ Then, you can build the project, e.g.:
 
 ```
 mkdir build
 cd build
-cmake ..
+cmake .. -DCMAKE_BUILD_TYPE=Release
 make
 ```
 
@@ -28,4 +30,3 @@ Then you can run the solver using:
 TODO
 
 ## License
-
