@@ -16,6 +16,18 @@
 int index(int row, int col, int width);
 
 
+
+/// Performs \p a . \p b and stores it in \p res
+/// @param a the left matrix
+/// @param b the right matrix
+/// @param res the result
+/// @param m the matrices size
+/// @param base the matrices base
+void matmult(const std::vector<int>& a, const std::vector<int>& b, std::vector<int>& res, int m, int base);
+
+
+
+
 /// Writes a matrix \p B on \p out
 /// @param out the output stream
 /// @param m the matrix size

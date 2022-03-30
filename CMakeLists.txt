@@ -41,4 +41,4 @@ target_link_directories(MatBuilder PRIVATE ${CPLEX_LIB} ${CPLEX_LIB2} )
 target_link_libraries(MatBuilder PRIVATE galois++  concert ilocplex cplex m pthread dl)
 
 
-add_executable(sampler sampler.cpp MatrixTools.cpp)
+add_executable(sampler sampler.cpp MatrixTools.cpp Scrambling.cpp MatrixSamplerClass.cpp)

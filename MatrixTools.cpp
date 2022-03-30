@@ -13,7 +13,24 @@ int index(int row, int col, int width){
     return row * width + col;
 }
 
-
+/// Performs \p a . \p b and stores it in \p res
+/// @param a the left matrix
+/// @param b the right matrix
+/// @param res the result
+/// @param m the matrices size
+/// @param base the matrices base
+void matmult(const std::vector<int>& a, const std::vector<int>& b, std::vector<int>& res, int m, int base){
+  for (int row = 0; row < m; ++row){
+    for (int col = 0; col < m; ++col){
+      int ind = index(row,col,m);
+      int val = 0;
+      for (int i = 0; i < m; ++i){
+        val += a[index(row, i, m)] * b[index(i, col, m)];
+      }
+      res[ind] = val % base;
+    }
+  }
+}
 
 /// Writes a matrix \p B on \p out
 /// @param out the output stream
