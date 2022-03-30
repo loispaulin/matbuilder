@@ -34,9 +34,11 @@ else()
   set(CPLEX_LIB2 "/opt/ibm/ILOG/CPLEX_Studio201/concert/lib/x86-64_linux/static_pic")
 endif()
 
-
 message(STATUS "CPLEX inc path: ${CPLEX_INC} and ${CPLEX_INC2}")
 add_executable(MatBuilder MatBuilder.cpp cplexMatrices.cpp MatrixTools.cpp)
 target_include_directories(MatBuilder PRIVATE ${CPLEX_INC} ${CPLEX_INC2})
 target_link_directories(MatBuilder PRIVATE ${CPLEX_LIB} ${CPLEX_LIB2} )
 target_link_libraries(MatBuilder PRIVATE galois++  concert ilocplex cplex m pthread dl)
+
+
+add_executable(sampler sampler.cpp)
