@@ -1,6 +1,5 @@
  # MatBuilder
 
- Demo code for "MatBuilder: Mastering Sampling Uniformity Over Projections" (submission id: 168)
 
  This folder contains both the source code of MatBuilder and profiles used in the paper (tested on linux and MacOS).
 
