@@ -37,5 +37,6 @@ endif()
 
 message(STATUS "CPLEX inc path: ${CPLEX_INC} and ${CPLEX_INC2}")
 add_executable(MatBuilder MatBuilder.cpp cplexMatrices.cpp MatrixTools.cpp)
-target_link_libraries(MatBuilder PRIVATE galois++  concert ilocplex cplex m pthread dl)
 target_include_directories(MatBuilder PRIVATE ${CPLEX_INC} ${CPLEX_INC2})
+target_link_directories(MatBuilder PRIVATE ${CPLEX_LIB} ${CPLEX_LIB2} )
+target_link_libraries(MatBuilder PRIVATE galois++  concert ilocplex cplex m pthread dl)
