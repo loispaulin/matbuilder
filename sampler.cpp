@@ -17,7 +17,7 @@ int main(int argc, char** argv)
   CLI::App app{"matBuiler sampler"};
   
   int nDims = 6;
-  app.add_option("-s,--nbDims", nDims, "number of dimensions to generate, default: " + std::to_string(nDims));
+  app.add_option("-s,--nDims", nDims, "number of dimensions to generate, default: " + std::to_string(nDims));
   int npts = 9*9*9*9;
   app.add_option("-n,--npts", npts, "number of points to generate, default: " + std::to_string(npts));
   int seed = 133742;
@@ -25,7 +25,7 @@ int main(int argc, char** argv)
   string input_matrices;
   app.add_option("-i,--idv", input_matrices, "input matrices initialisation (ascii file), default: " +input_matrices)->required();
   int m = 8;
-  app.add_option("--size", m,"input matrix size, default: " + std::to_string(m));
+  app.add_option("-m,--matrixSize", m,"input matrix size, default: " + std::to_string(m));
   int depth = -1;
   app.add_option("--depth", depth,"scrambling depth (equals matrix size by default)");
   int base = 3;
