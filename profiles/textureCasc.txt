@@ -1,0 +1,9 @@
+p=3
+s=6
+m=3
+net 0 1
+net 1 2
+net 2 3
+net 3 4
+net 4 5
+weak 1 net 0 1 2 3 4 5

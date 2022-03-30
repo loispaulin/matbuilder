@@ -1,0 +1,11 @@
+p=3
+s=9
+m=10
+from 3 stratified 0 1 2
+from 3 stratified 1 2 3
+from 3 stratified 2 3 4
+from 3 stratified 3 4 5
+from 3 stratified 4 5 6
+from 3 stratified 5 6 7
+from 3 stratified 6 7 8
+from 5 weak 1 stratified 0 1 2 3 4 5 6 7 8

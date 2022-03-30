@@ -1,0 +1,15 @@
+p=3
+s=6
+m=8
+net 0 1
+net 1 2
+net 2 3
+net 3 4
+net 4 5
+from 3 net 0 2
+from 3 net 0 3
+from 3 net 0 4
+from 3 net 0 5
+from 3 stratified 1 3
+from 3 stratified 1 4
+from 3 stratified 1 5

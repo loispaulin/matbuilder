@@ -1,0 +1,11 @@
+p=3
+s=8
+m=10
+net 0 1
+net 1 2
+net 2 3
+net 3 4
+net 4 5
+net 5 6
+net 6 7
+weak 1 net u4 0 1 2 3 4 5 6 7

@@ -1,0 +1,17 @@
+p=3
+s=10
+m=10
+# Cascaded property
+net 0 1
+net 1 2
+net 2 3
+net 3 4
+net 4 5
+# Consecutive 3D stratification
+from 3 stratified 0 1 2
+from 4 stratified 1 2 3
+from 3 stratified 2 3 4
+from 4 stratified 3 4 5
+# Full dimensional uniformity
+from 4 to 6 stratified 0 1 2 3 4
+from 4 to 6 stratified 1 2 3 4 5

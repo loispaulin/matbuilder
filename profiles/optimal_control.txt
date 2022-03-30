@@ -1,0 +1,10 @@
+s=4
+p=3
+m=16
+net 0 1
+net 2 3
+net 0 1 2
+net 1 2 3
+from 3 to 5 stratified 0 1 2 3
+from 7 to 9 stratified 0 1 2 3
+from 11 stratified 0 1 2 3

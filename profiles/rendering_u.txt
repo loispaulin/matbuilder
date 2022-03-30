@@ -1,0 +1,29 @@
+# x y u v t {si xi yi}*
+p=3
+s=8
+m=8
+# image
+net 0 1
+# lense
+net 2 3
+# time + selector
+net 4 5
+# bounce direction
+net 6 7
+# bounce with selector
+weak 1 net 5 6 7
+# time + image
+weak 1 net 4 0 1
+# time + lense
+weak 1 net 4 2 3
+# time + bounce dir
+weak 1 net 4 6 7
+# lense uniformity
+weak 10 net 0 1 2 3
+# bounce time uniformity
+weak 10 net 4 5 6 7
+# Uniformity
+weak 1 net u0 0 1 2 3 4 5 6 7
+weak 1 net u1 0 1 2 3 4 5 6 7
+weak 1 net u2 0 1 2 3 4 5 6 7
+weak 1 net u3 0 1 2 3 4 5 6 7
