@@ -3,6 +3,9 @@
 
  This folder contains both the source code of MatBuilder and profiles used in the paper (tested on linux and MacOS).
 
+
+## Building MatBuilder
+
  To build the code, you would need an install of the CPLEX Optimization Studio (free for academics,). Once CPLEX as been installed:
 
 ```
@@ -19,3 +22,10 @@ Then you can run the solver using:
 ```
 
 (`-h` to get the list of options).
+
+## Generating Samples from matrices
+
+TODO
+
+## License
+
