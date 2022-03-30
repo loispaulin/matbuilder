@@ -29,9 +29,9 @@ int main(int argc, char** argv)
   int depth = -1;
   app.add_option("--depth", depth,"scrambling depth (equals matrix size by default)");
   int base = 3;
-  app.add_option("-p", base, "Matrix base, default: " + std::to_string(base));
+  app.add_option("-p,--base", base, "Matrix base, default: " + std::to_string(base));
   bool owen_permut_flag = false;
-  app.add_flag("-p", owen_permut_flag,"apply Owen permutation on output points, default: " + std::to_string(owen_permut_flag));
+  app.add_flag("--owen", owen_permut_flag,"apply Owen permutation on output points, default: " + std::to_string(owen_permut_flag));
   int nbReal = 1;
   app.add_option("--nbReal", nbReal, "number of realizations of the sampler (for the scrambling), default: " + std::to_string(nbReal));
   std::string output_fname = "out.dat";
