@@ -25,7 +25,7 @@ Then you can run the solver using:
 
 (`-h` to get the list of options).
 
-## Generating Samples from matrices
+##Generating Samples from matrices
 
 TODO
 
