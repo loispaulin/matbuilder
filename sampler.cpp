@@ -40,8 +40,8 @@ int main(int argc, char** argv)
   app.add_option("--dbg", dbg_flag, "dbg_flag, default: " + std::to_string(dbg_flag));
   CLI11_PARSE(app, argc, argv)
   
-  if (depth == -1)
-    depth = m;
+    if (depth == -1)
+      depth = m;
   
   ifstream in(input_matrices);
   if (in.fail()) {
