@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2021 CNRS
+Copyright (c) 2022 CNRS
 
 Loïs Paulin, David Coeurjolly, Jean-Claude Iehl, Nicolas Bonneel, Alexander Keller, Victor Ostromoukhov
 "MatBuilder: Mastering Sampling Uniformity Over Projections", ACM Transactions on Graphics (Proceedings of SIGGRAPH), August 2022.
