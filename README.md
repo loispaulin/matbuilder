@@ -33,6 +33,10 @@ TODO
 
 ## License
 
+The software uses Wojciech Jarosz's [Galois++](https://github.com/wkjarosz/galois) for computations on Galois fields.
+
+
+
 ```
 MIT License
 
