@@ -1,3 +1,30 @@
+/*
+MIT License
+
+Copyright (c) 2021 CNRS
+
+Loïs Paulin, David Coeurjolly, Jean-Claude Iehl, Nicolas Bonneel, Alexander Keller, Victor Ostromoukhov
+"MatBuilder: Mastering Sampling Uniformity Over Projections", ACM Transactions on Graphics (Proceedings of SIGGRAPH), August 2022.
+
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
 #include <math.h>
 #include <vector>
 #include <cstring>
@@ -15,7 +42,7 @@ int main(int argc, char** argv)
 {
   //Call parameters handling
   CLI::App app{"matBuiler sampler"};
-  
+
   int nDims = 6;
   app.add_option("-s,--nDims", nDims, "number of dimensions to generate, default: " + std::to_string(nDims));
   int npts = 9*9*9*9;
@@ -39,32 +66,32 @@ int main(int argc, char** argv)
   bool dbg_flag = false;
   app.add_option("--dbg", dbg_flag, "dbg_flag, default: " + std::to_string(dbg_flag));
   CLI11_PARSE(app, argc, argv)
-  
+
     if (depth == -1)
       depth = m;
-  
+
   ifstream in(input_matrices);
   if (in.fail()) {
     cerr << "Error: Could not open input file: " << input_matrices << endl;
     return -1;
   }
-  
+
   ofstream out(output_fname);
   if (out.fail()) {
     cerr << "Error: Could not open output file: " << output_fname << endl;
     return -1;
   }
   out << setprecision(16);
-  
+
   std::vector<std::vector<int> > Bs(nDims, std::vector<int>(m*m));
   std::vector<std::vector<int> > Cs(nDims, std::vector<int>(m*m));
-  
+
   readMatrices(in, m, nDims, Cs);
-  
+
   if(dbg_flag) {
     writeMatrices(std::cout,m,Cs,true);
   }
-  
+
   minstd_rand gen(seed);
   uniform_int_distribution<int> unif;
   for (int real = 0; real < nbReal; ++real) {
@@ -86,5 +113,5 @@ int main(int argc, char** argv)
     if (real != nbReal-1) out << "#" << endl;
   }
   out.close();
-  
+
 }
