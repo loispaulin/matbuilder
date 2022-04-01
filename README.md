@@ -4,7 +4,7 @@
  This folder contains both the source code of MatBuilder and profiles used in the paper (tested on linux and MacOS).
 
 
- The software uses Wojciech Jarosz's [Galois++](https://github.com/wkjarosz/galois) for computations on Galois fields.
+ The software uses Wojciech Jarosz's [Galois++](https://github.com/wkjarosz/galois) library for computations on Galois fields.
 
 
 ## Building MatBuilder
