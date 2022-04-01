@@ -4,6 +4,9 @@
  This folder contains both the source code of MatBuilder and profiles used in the paper (tested on linux and MacOS).
 
 
+ The software uses Wojciech Jarosz's [Galois++](https://github.com/wkjarosz/galois) for computations on Galois fields.
+
+
 ## Building MatBuilder
 
  To build the code, you would need an install of the CPLEX Optimization Studio (free for academics,). Once CPLEX as been installed,
@@ -31,10 +34,9 @@ Then you can run the solver using:
 
 TODO
 
+
+
 ## License
-
-The software uses Wojciech Jarosz's [Galois++](https://github.com/wkjarosz/galois) for computations on Galois fields.
-
 
 
 ```
