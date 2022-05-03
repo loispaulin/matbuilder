@@ -1,9 +1,20 @@
  # MatBuilder
 
+Source code of the paper [MatBuilder: Mastering Sampling Uniformity Over Projections](https://perso.liris.cnrs.fr/lpaulin/Publications/paulin2022.html), Loïs Paulin, Nicolas Bonneel, David Coeurjolly, Jean-Claude Iehl, Alexander Keller, Victor Ostromoukhov, ACM Trans. on Graphics, SIGGRAPH 2022.
+
+``` bibtex
+@article{paulin2022,
+      author = {Loïs Paulin and Nicolas Bonneel and David Coeurjolly and Jean-Claude Iehl and Alexander Keller and Victor Ostromoukhov},
+      journal = {ACM Transactions on Graphics (Proceedings of SIGGRAPH)},
+      month = {August},
+      number = {xxx},
+      title = {MatBuilder: Mastering Sampling Uniformity Over Projections},
+      volume = {yyy},
+      year = {2022}
+}
+```
 
  This folder contains both the source code of MatBuilder and profiles used in the paper (tested on linux and MacOS).
-
-
  The software uses Wojciech Jarosz's [Galois++](https://github.com/wkjarosz/galois) library for computations on Galois fields.
 
 
