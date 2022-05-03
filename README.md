@@ -14,7 +14,7 @@ Source code of the paper [MatBuilder: Mastering Sampling Uniformity Over Project
 }
 ```
 
- This proect contains both the source code of MatBuilder and profiles used in the paper (tested on linux and MacOS).
+ This project contains both the source code of MatBuilder and profiles used in the paper (tested on linux and MacOS).
  The software uses Wojciech Jarosz's [Galois++](https://github.com/wkjarosz/galois) library for computations on Galois fields.
 
 
