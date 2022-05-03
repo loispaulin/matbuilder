@@ -43,9 +43,26 @@ Then you can run the solver using:
 ## Generating samples from the matrices
 
 
-TODO
+One the matrices have geen generated, samples can be retreive using the `sampler`tool: 
 
+```
+matBuiler sampler
+Usage: ./sampler [OPTIONS]
 
+Options:
+  -h,--help                   Print this help message and exit
+  -s,--nDims INT              number of dimensions to generate, default: 6
+  -n,--npts INT               number of points to generate, default: 6561
+  --seed INT                  Random number generator seed (for the scrambling). default: 133742
+  -i,--idv TEXT REQUIRED      input matrices initialisation (ascii file), default:
+  -m,--matrixSize INT         input matrix size, default: 8
+  --depth INT                 scrambling depth (equals matrix size by default)
+  -p,--base INT               Matrix base, default: 3
+  --owen                      apply Owen permutation on output points, default: 0
+  --nbReal INT                number of realizations of the sampler (for the scrambling), default: 1
+  -o,--output TEXT            output samples filename, default: out.dat
+  --dbg UINT                  dbg_flag, default: 0```
+```
 
 ## License
 
