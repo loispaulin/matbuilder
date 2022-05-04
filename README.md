@@ -7,9 +7,10 @@ Source code of the paper [MatBuilder: Mastering Sampling Uniformity Over Project
       author = {Loïs Paulin and Nicolas Bonneel and David Coeurjolly and Jean-Claude Iehl and Alexander Keller and Victor Ostromoukhov},
       journal = {ACM Transactions on Graphics (Proceedings of SIGGRAPH)},
       month = {August},
-      number = {xxx},
+      number = {4},
       title = {MatBuilder: Mastering Sampling Uniformity Over Projections},
-      volume = {yyy},
+      volume = {41},
+      doi = {https://doi.org/10.1145/3528223.3530063},
       year = {2022}
 }
 ```
