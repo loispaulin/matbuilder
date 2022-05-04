@@ -1,6 +1,6 @@
- # MatBuilder
+ # MatBuilder: Mastering Sampling Uniformity Over Projections
 
-Source code of the paper [MatBuilder: Mastering Sampling Uniformity Over Projections](https://perso.liris.cnrs.fr/lpaulin/Publications/paulin2022.html), Loïs Paulin, Nicolas Bonneel, David Coeurjolly, Jean-Claude Iehl, Alexander Keller, Victor Ostromoukhov, ACM Trans. on Graphics, SIGGRAPH 2022.
+Source code of the paper [MatBuilder: Mastering Sampling Uniformity Over Projections](https://projet.liris.cnrs.fr/matbuilder), Loïs Paulin, Nicolas Bonneel, David Coeurjolly, Jean-Claude Iehl, Alexander Keller, Victor Ostromoukhov, ACM Trans. on Graphics, SIGGRAPH 2022.
 
 ``` bibtex
 @article{paulin2022,
