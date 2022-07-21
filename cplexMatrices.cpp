@@ -170,14 +170,25 @@ void constraintMk(const vector<const int*>& C, int fullSize, int m, const vector
     //vars.add(ki);
     // Det must be non 0
     if (weak){
-        IloNumVar x(env, 0, 1, ILOINT);
-        varname = "x_" + name;
-        x.setName(varname.c_str());
-        weakvar.add(x);
-        c.add(x <= det);
-        c.add(det <= gf.q-1);
-        c[indC].setName(name.c_str());
-        obj += - weight * x;
+        if (weight >= 0) {
+            IloNumVar x(env, 0, 1, ILOINT);
+            varname = "x_" + name;
+            x.setName(varname.c_str());
+            weakvar.add(x);
+            c.add(x <= det);
+            c.add(det <= gf.q - 1);
+            c[indC].setName(name.c_str());
+            obj += -weight * x;
+        } else {
+            IloNumVar x(env, 0, 1, ILOINT);
+            varname = "x_" + name;
+            x.setName(varname.c_str());
+            weakvar.add(x);
+            c.add( x*gf.q >= det);
+            c.add( det >= 0);
+            c[indC].setName(name.c_str());
+            obj += -weight * x;
+        }
     } else {
         c.add(1 <= det <= gf.q-1);
         c[indC].setName(name.c_str());
@@ -208,7 +219,13 @@ bool advancePositions(vector<int>& positions, int max){
     return true;
 }
 
+
 void positions2k(const vector<int>& positions, vector<int>& k, int& unbalance, int max){
+    if (positions.empty()){
+        k[0] = max + 1;
+        unbalance = 0;
+        return;
+    }
     k[0] = positions[0];
     for (int i = 1; i < positions.size(); ++i){
         k[i] = positions[i] - positions[i-1] - 1;
