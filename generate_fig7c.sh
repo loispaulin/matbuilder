@@ -8,7 +8,7 @@ PATHTOSCRIPTS=scripts/
 ${BUILDPATH}/matbuilder -i profiles/generic_projLDS.txt -o output-matrices.dat -t 30
 
 ## Generating pts
-${BUILDPATH}/sampler -i output-matrices.dat -s 6 -p 3 -m 10 -n 2048 -o samples.dat
+${BUILDPATH}/sampler -i output-matrices.dat -s 6 -p 3 -m 10 -n 2187 -o samples.dat
 
 ## Generate fig
-${PATHTOSCRIPTS}/projections_grid.sh samples.dat 6 -t pdf
+${PATHTOSCRIPTS}/projections_grid.sh samples.dat 6 . -t pdf
