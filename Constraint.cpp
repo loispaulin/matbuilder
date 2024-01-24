@@ -16,6 +16,7 @@ Copyright 2022, CNRS
 #include <iostream>
 #include "Constraint.h"
 #include "cplexMatrices.h"
+#include "MatrixTools.h"
 
 using namespace std;
 
@@ -36,6 +37,7 @@ const {
         selInd[i] = matIndices[dimensions[i]].data();
         label += to_string(dimensions[i]);
     }
+
     switch (type) {
         case Net:
             zeronetProperty(selC, fullSize, m, gf, subdets, env, vars, ks, selInd, c, obj, weak, weight,
@@ -54,6 +56,9 @@ const {
             if (m == 2 * dimensions.size())
                 stratifiedProperty(selC, fullSize, m, gf, subdets, env, vars, ks, selInd, c, obj, weak, weight, weakvar, label);
             break;
+        case Proj:
+            ProjectiveProperty(m, dimensions, matrices, matrix_m, matIndices, env, vars, c);
+            break;  
     }
 }
 
@@ -82,6 +87,9 @@ bool Constraint::check(const std::vector<vector<int>> &C, int fullSize, int m, c
         case PropAprime:
             return m != 2*dimensions.size() || checkStratified(selC, fullSize, m, gf);
             break;
+        case Proj:
+            return checkProjective(C, m, fullSize, matrices, matrix_m, dimensions);
+            break;
     }
     return false;
 }
@@ -100,6 +108,9 @@ string Constraint::tostring() const {
             break;
         case PropAprime:
             name += "PropAprime ";
+            break;
+        case Proj:
+            name += "Proj ";
             break;
     }
     for (int v : dimensions){
@@ -173,6 +184,10 @@ void parseFile(istream& in, vector<Constraint>& constraints, int& s, int& m, int
                 cons.type = Constraint::Type::PropA;
             } else if (type == "propAprime") {
                 cons.type = Constraint::Type::PropAprime;
+            } 
+            else if (type == "proj") {
+                cons.type = Constraint::Type::Proj;
+                sline >> cons.filename;
             } else {
                 cerr << "Error Parsing: Unknown constraint type " << type << endl;
                 constraints.pop_back();
@@ -181,6 +196,81 @@ void parseFile(istream& in, vector<Constraint>& constraints, int& s, int& m, int
 
             while (sline >> d) {
                 cons.dimensions.push_back(d);
+            }
+
+            if (cons.type == Constraint::Type::Proj)
+            {
+                std::ifstream in(cons.filename);
+
+                if (!in.is_open())
+                {
+                    std::cout << "Can not open file: " << cons.filename << std::endl;
+                    exit(1);
+                }
+                
+                bool good = false; bool a = false, b = false, d = false;
+                int p_matrix = 0;
+                int s_matrix = 0;
+                int m_matrix = 0;
+                // Read info : 
+                std::string line;
+                while (!good && std::getline(in, line))
+                {
+                    std::stringstream ss(line);
+                    char c;
+                    ss >> c;
+
+                    if (c == 'p')
+                    {
+                        ss >> c;
+                        ss >> p_matrix;
+                        a = true;
+                    }
+                    else if (c == 's')
+                    {
+                        ss >> c;
+                        ss >> s_matrix;    
+                        b = true;
+                    }
+                    else if (c == 'm')
+                    {
+                        ss >> c;
+                        ss >> m_matrix;
+                        d = true;    
+                    }
+
+                    good = a && b && d;
+                }
+
+                if (!good)
+                {
+                    std::cout << "Could not read information from matrix file. did you specy p=,m= and s= ?" << std::endl;
+                    exit(1);
+                }
+                
+                // s, b and m are not (always) filled before parsing this constriant...
+                // if (s_matrix < cons.dimensions.size())
+                // {
+                //     std::cout << "Error: not enough dimensions provided for projections";
+                //     std::cout << " " << s_matrix << " != " << s << std::endl;
+                //     exit(1);
+                // }
+                // else if (p_matrix != b)
+                // {
+                //     std::cout << "Error: not the same base for projection and current constraints";
+                //     std::cout << " " << p_matrix << " != " << b << std::endl;
+                //     exit(1);
+                // }
+                // else if (m_matrix < m)
+                // {
+                //     std::cout << "Error: not enough column in matrices for current constraints";
+                //     std::cout << " " << m_matrix << " < " << m << std::endl;
+                //     exit(1);
+                // }
+
+                cons.matrices = std::vector<std::vector<int>>(s_matrix, std::vector<int>(m_matrix * m_matrix));
+                cons.matrix_m = m_matrix;
+                readMatrices(in, m_matrix, s_matrix, cons.matrices);
             }
         }
 

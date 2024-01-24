@@ -74,6 +74,11 @@ void stratifiedProperty(const std::vector<const int*>& C, int fullSize, int m, c
                         double weight, IloNumVarArray& weakvar, const std::string& label="");
 
 
+void ProjectiveProperty(int m, const std::vector<int>& dims, const std::vector<std::vector<int>>& matrices, 
+                        int matrix_m, 
+                        const std::vector<std::vector<int>>& matIndices, 
+                        IloEnv& env, IloNumVarArray& vars, IloConstraintArray& c);
+
 int getMdet(const std::vector<const int*>& C, int fullsize, int m, const std::vector<int>& k, const Galois::Field& gf);
 
 /// Tests whether the s matrices \p C are (0,m,s)-net
@@ -91,6 +96,8 @@ bool checkzeronet(const std::vector<const int*>& C, int fullSize, int m, int max
 /// @param k Number of line from \p C1 to take
 /// @param gf Galois field to make computations in
 bool checkStratified(const std::vector<const int*>& C, int fullSize, int m, const Galois::Field& gf);
+
+bool checkProjective(const std::vector<std::vector<int>>& C, int m, int fullM, const std::vector<std::vector<int>>& matrices, int matrix_m, const std::vector<int>& dimensions);
 
 /// Initializes variable to generate a new column for \p s matrices of size \p m in base \p b
 void initVar(IloEnv& env, int s, int m, int b, IloNumVarArray& var, std::vector<std::vector<int>>& matIndices);
