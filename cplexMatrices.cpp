@@ -322,7 +322,8 @@ void ProjectiveProperty(int m, const std::vector<int>& dims, const std::vector<s
     {
         for (unsigned int d = 0; d < dims.size(); d++)
         {
-            c.add(vars[matIndices[dims[d]][i]] == matrices[d][m - 1 + i * matrix_m]);
+            if (matrices[d][m - 1 + i * matrix_m] >= 0)
+                c.add(vars[matIndices[dims[d]][i]] == matrices[d][m - 1 + i * matrix_m]);
         }
     }
 }
@@ -414,7 +415,8 @@ bool checkProjective(
     {
         for (unsigned int i = 0; i < m; i++)
         {
-            ok = ok && (C[dimensions[d]][m + i * fullM] == matrices[d][m + i * matrix_m]);
+            if (matrices[d][m + i * matrix_m] >= 0)
+                ok = ok && (C[dimensions[d]][m + i * fullM] == matrices[d][m + i * matrix_m]);
         }
     }
 

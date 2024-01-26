@@ -247,6 +247,12 @@ void parseFile(istream& in, vector<Constraint>& constraints, int& s, int& m, int
                     std::cout << "Could not read information from matrix file. did you specy p=,m= and s= ?" << std::endl;
                     exit(1);
                 }
+
+                if (cons.weak) 
+                {
+                    std::cout << "Warning: weak not supported for projective constraint" << std::endl;
+                    exit(1);
+                }
                 
                 // s, b and m are not (always) filled before parsing this constriant...
                 // if (s_matrix < cons.dimensions.size())
