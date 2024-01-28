@@ -208,8 +208,7 @@ void parseFile(istream& in, vector<Constraint>& constraints, int& s, int& m, int
                     exit(1);
                 }
                 
-                bool good = false; bool a = false, b = false, d = false;
-                int p_matrix = 0;
+                bool good = false; bool s_read = false, m_read = false;
                 int s_matrix = 0;
                 int m_matrix = 0;
                 // Read info : 
@@ -220,26 +219,20 @@ void parseFile(istream& in, vector<Constraint>& constraints, int& s, int& m, int
                     char c;
                     ss >> c;
 
-                    if (c == 'p')
-                    {
-                        ss >> c;
-                        ss >> p_matrix;
-                        a = true;
-                    }
-                    else if (c == 's')
+                    if (c == 's')
                     {
                         ss >> c;
                         ss >> s_matrix;    
-                        b = true;
+                        s_read = true;
                     }
                     else if (c == 'm')
                     {
                         ss >> c;
                         ss >> m_matrix;
-                        d = true;    
+                        m_read = true;    
                     }
 
-                    good = a && b && d;
+                    good = s_read && m_read;
                 }
 
                 if (!good)
@@ -253,26 +246,6 @@ void parseFile(istream& in, vector<Constraint>& constraints, int& s, int& m, int
                     std::cout << "Warning: weak not supported for projective constraint" << std::endl;
                     exit(1);
                 }
-                
-                // s, b and m are not (always) filled before parsing this constriant...
-                // if (s_matrix < cons.dimensions.size())
-                // {
-                //     std::cout << "Error: not enough dimensions provided for projections";
-                //     std::cout << " " << s_matrix << " != " << s << std::endl;
-                //     exit(1);
-                // }
-                // else if (p_matrix != b)
-                // {
-                //     std::cout << "Error: not the same base for projection and current constraints";
-                //     std::cout << " " << p_matrix << " != " << b << std::endl;
-                //     exit(1);
-                // }
-                // else if (m_matrix < m)
-                // {
-                //     std::cout << "Error: not enough column in matrices for current constraints";
-                //     std::cout << " " << m_matrix << " < " << m << std::endl;
-                //     exit(1);
-                // }
 
                 cons.matrices = std::vector<std::vector<int>>(s_matrix, std::vector<int>(m_matrix * m_matrix));
                 cons.matrix_m = m_matrix;
