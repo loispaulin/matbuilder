@@ -23,14 +23,21 @@ Copyright 2022, CNRS
 
 class Constraint{
 public:
-    enum Type {Stratified, Net, PropA, PropAprime};
+    enum Type {Stratified, Net, PropA, PropAprime, Proj};
     Type type;
     std::vector<int> dimensions;
+    
+    std::vector<std::vector<int>> matrices;
+    unsigned int matrix_m;
+    std::string filename;
+
     bool weak = false;
     double weight;
     int start = -1;
     int end = std::numeric_limits<int>::max();
     int max_unbalance = std::numeric_limits<int>::max();
+
+    void set(std::vector<std::vector<int>>& C, int m) const;
 
     void add(const std::vector<std::vector<int>>& C, int fullSize, int m, const Galois::Field& gf, std::vector<int> &subdets,
              IloEnv& env, IloNumVarArray& vars, IloNumVarArray &ks, const std::vector<std::vector<int>>& matIndices,

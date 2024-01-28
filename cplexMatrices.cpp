@@ -195,7 +195,6 @@ void constraintMk(const vector<const int*>& C, int fullSize, int m, const vector
     }
 }
 
-
 /// Enumerate next choice of different \p positions among [0..\p max]
 /// @param positions the positions to be iterated on
 /// @param max the maximum value of the range
@@ -312,7 +311,21 @@ void stratifiedProperty(const vector<const int*>& C, int fullSize, int m, const 
             k[v] -= 1;
         }
     } while(advancePositions(positions, s-1));
+}
 
+void ProjectiveProperty(int m, const std::vector<int>& dims, const std::vector<std::vector<int>>& matrices, 
+                        int matrix_m, 
+                        const std::vector<std::vector<int>>& matIndices, 
+                        IloEnv& env, IloNumVarArray& vars, IloConstraintArray& c)
+{
+    for (unsigned int i = 0; i < m; i++)
+    {
+        for (unsigned int d = 0; d < dims.size(); d++)
+        {
+            if (matrices[d][m - 1 + i * matrix_m] >= 0)
+                c.add(vars[matIndices[dims[d]][i]] == matrices[d][m - 1 + i * matrix_m]);
+        }
+    }
 }
 
 
@@ -390,6 +403,24 @@ bool checkStratified(const vector<const int*>& C, int fullSize, int m, const Gal
 
     return result;
 
+}
+
+bool checkProjective(
+    const std::vector<std::vector<int>>& C, int m, int fullM, 
+    const std::vector<std::vector<int>>& matrices, int matrix_m, 
+    const std::vector<int>& dimensions)
+{
+    bool ok = true;
+    for (unsigned int d = 0; d < dimensions.size(); d++)
+    {
+        for (unsigned int i = 0; i < m; i++)
+        {
+            if (matrices[d][m + i * matrix_m] >= 0)
+                ok = ok && (C[dimensions[d]][m + i * fullM] == matrices[d][m + i * matrix_m]);
+        }
+    }
+
+    return ok;
 }
 
 /// Initializes variable to generate a new column for \p s matrices of size \p m in base \p b
